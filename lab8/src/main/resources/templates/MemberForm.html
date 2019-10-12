@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Employee Form</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+
+<div id="global">
+    <form action="@{}" method="" th:object="member">
+        <fieldset>
+            <legend>Add an employee</legend>
+            <p>
+                <ul th:if="${#fields.hasErrors('*')}">
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+        </ul>
+            </p>
+            <p>
+                <label for="firstName" th:text="#{member.form.firstName}">First Name: </label>
+                <input th:field="${member.firstName}" type="text" />
+            <div style="text-align: center;">
+              <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorClass="fieldError"
+            </p>
+            <p>
+                <label for="lastName">Last Name: </label>
+                <form:input path="lastName" />
+            <div style="text-align: center;">
+                <form:errors path="lastName" cssStyle="color : red;" />
+            </div>
+            </p>
+
+            <p>
+                <label for="memberNumber">Member Number: </label>
+                <form:input path="memberNumber" id="memberNumber" />
+                <form:errors path="memberNumber" cssStyle="color : red;" />
+            </p>
+            <p>
+                <label for="age">Age: </label>
+                <form:input path="age" id="age" />
+            <div style="text-align: center;">
+                <form:errors path="age" cssStyle="color : red;" />
+            </div>
+            </p>
+            <p id="buttons">
+                <input id="reset" type="reset" tabindex="4">
+                <input id="submit" type="submit" tabindex="5" value="Add Member">
+            </p>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
